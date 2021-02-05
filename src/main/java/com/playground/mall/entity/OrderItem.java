@@ -1,10 +1,12 @@
 package com.playground.mall.entity;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter
+@Setter
 @Entity
 public class OrderItem {
 
@@ -13,9 +15,13 @@ public class OrderItem {
     @Column(name = "ORDER_ITEM_ID")
     private Long id;
 
-    private Long orderId;
+    @ManyToOne
+    @JoinColumn(name = "ORDER_ID")
+    private Order order;
 
-    private Long itemId;
+    @ManyToOne
+    @JoinColumn(columnDefinition = "ORDER_ITEM_ID")
+    private Item item;
 
     private int orderPrice;
 
