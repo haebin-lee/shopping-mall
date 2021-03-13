@@ -1,11 +1,14 @@
 package com.playground.mall.service;
 
 import com.playground.mall.entity.*;
+import com.playground.mall.model.OrderSearchRequest;
 import com.playground.mall.repository.MemberRepository;
 import com.playground.mall.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Transactional
 @RequiredArgsConstructor
@@ -45,8 +48,8 @@ public class OrderService {
         order.cancel();
     }
 
-//    // 주문 검색
-//    public List<Order> findOrders(OrderSearchRequest request) {
-//        return orderRepository.findAll(request);
-//    }
+    // 주문 검색
+    public List<Order> findOrders(OrderSearchRequest request) {
+        return orderRepository.findAll(request.toSpecification());
+    }
 }

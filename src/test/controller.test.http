@@ -24,3 +24,13 @@ Content-Type: application/json
 
 ###
 POST http://localhost:8080/order?memberId=1&itemId=1&count=1
+
+###
+POST http://localhost:8080/order/search
+Content-Type: application/json
+
+{
+  "memberName" : "이해빈",
+  "orderStatus" : "ORDER"
+
+}
