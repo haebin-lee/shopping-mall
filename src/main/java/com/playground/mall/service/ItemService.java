@@ -1,6 +1,7 @@
 package com.playground.mall.service;
 
 import com.playground.mall.entity.Item;
+import com.playground.mall.model.request.ItemRequest;
 import com.playground.mall.repository.ItemRepository;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,10 @@ public class ItemService {
 
     public void saveItem(Item item) {
         itemRepository.save(item);
+    }
+
+    public void updateItem(Long itemId, ItemRequest request) {
+        itemRepository.findById(itemId).ifPresent(m -> m.modify(request.getPrice(), request.getStockQuantity()));
     }
 
     public List<Item> findItems() {
